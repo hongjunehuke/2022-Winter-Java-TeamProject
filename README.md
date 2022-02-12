@@ -5,6 +5,7 @@
 | Name   | email                    |
 | ------ | ------------------------ |
 | 최지웅 | jwchoi179@soongsil.ac.kr |
+| 홍준혁 | junhyeok2166@daum.net |
 
 ## Project Plan
 
