@@ -7,6 +7,7 @@
 | 최지웅 | jwchoi179@soongsil.ac.kr |
 | 홍준혁 | junhyeok2166@daum.net |
 | 안민하 | dks4857@gmail.com |
+| 이유진 | youjin6325@naver.com |
 
 ## Project Plan
 
