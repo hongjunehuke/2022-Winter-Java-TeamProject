@@ -9,8 +9,14 @@
 | Name   | email                    |
 | ------ | ------------------------ |
 | 최지웅 | jwchoi179@soongsil.ac.kr |
+<<<<<<< HEAD
 | 홍준혁 | junhyeok2166@daum.net    |
 | 안민하 | dks4857@gmail.com        |
+=======
+| 홍준혁 | junhyeok2166@daum.net |
+| 안민하 | dks4857@gmail.com |
+| 이유진 | youjin6325@naver.com |
+>>>>>>> refs/remotes/origin/master
 
 ## Project Plan
 
