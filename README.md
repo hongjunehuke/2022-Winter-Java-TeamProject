@@ -1,12 +1,16 @@
 # 2022 Ci & Ai Winter Java Project
 
+## Team Name
+
+자바칩프라푸치노
+
 ## Team Member
 
 | Name   | email                    |
 | ------ | ------------------------ |
 | 최지웅 | jwchoi179@soongsil.ac.kr |
-| 홍준혁 | junhyeok2166@daum.net |
-| 안민하 | dks4857@gmail.com |
+| 홍준혁 | junhyeok2166@daum.net    |
+| 안민하 | dks4857@gmail.com        |
 
 ## Project Plan
 
