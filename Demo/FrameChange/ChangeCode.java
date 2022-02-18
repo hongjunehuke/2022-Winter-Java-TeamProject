@@ -64,3 +64,4 @@ public class Part1 extends JFrame{
         setVisible(true);		
 	}
 }
+
