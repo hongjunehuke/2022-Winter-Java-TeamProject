@@ -5,23 +5,23 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 public class RecommendRecipe extends JPanel {
-	private static final long serialVersionUID = 1L; //Á÷·ÄÈ­ °ü·Ã ÄÚµå - https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=kkson50&logNo=220564273220
+	private static final long serialVersionUID = 1L; //ì§ë ¬í™” ê´€ë ¨ ì½”ë“œ - https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=kkson50&logNo=220564273220
 	
 	JPanel mainPn, Pn1, Pn2, Pn3, Pn4, Pn5; 
-	JComboBox<String> combo1, combo2, combo3; 	//Â÷·Ê´ë·Î »ç¿ëÃ³, »ø·¯µğºĞ·ù, ÆíÀÇÁ¡ºĞ·ù ÄŞº¸¹Ú½º 
-	JCheckBox b1, b2, b3, b4, b5, b6; 					//Ã¼Å©¹Ú½º 4°³
-	JLabel l; 									//¶óº§ - ¸®½ºÆ® ÀÚ¸® Ç¥½ÃÇÏ·Á°í ³ÖÀº°Å¶ó ³ªÁß¿£ Áö¿ï ¿¹Á¤
-	JButton confirm_b; 							//È®ÀÎ ¹öÆ°
+	JComboBox<String> combo1, combo2, combo3; 	//ì°¨ë¡€ëŒ€ë¡œ ì‚¬ìš©ì²˜, ìƒëŸ¬ë””ë¶„ë¥˜, í¸ì˜ì ë¶„ë¥˜ ì½¤ë³´ë°•ìŠ¤ 
+	JCheckBox b1, b2, b3, b4, b5, b6; 					//ì²´í¬ë°•ìŠ¤ 4ê°œ
+	JLabel l; 									//ë¼ë²¨ - ë¦¬ìŠ¤íŠ¸ ìë¦¬ í‘œì‹œí•˜ë ¤ê³  ë„£ì€ê±°ë¼ ë‚˜ì¤‘ì—” ì§€ìš¸ ì˜ˆì •
+	JButton confirm_b; 							//í™•ì¸ ë²„íŠ¼
 	
-	String[] store = {"»ø·¯µğ", "ÆíÀÇÁ¡"}; 			//ÄŞº¸¹Ú½º ¾È¿¡ µé¾î°¥ ³»¿ë ¹è¿­
-	String[] sd = {"¿úº¼", "»ø·¯µğ", "»÷µå", "·¦", "¿ú·¦"};
-	String[] cs = {"¸é", "¶±ººÀÌ", "¸®Á¶¶Ç", "±¹/Âî°³", "¾ÈÁÖ", "À½·á"};
+	String[] store = {"ìƒëŸ¬ë””", "í¸ì˜ì "}; 			//ì½¤ë³´ë°•ìŠ¤ ì•ˆì— ë“¤ì–´ê°ˆ ë‚´ìš© ë°°ì—´
+	String[] sd = {"ì›œë³¼", "ìƒëŸ¬ë””", "ìƒŒë“œ", "ë©", "ì›œë©"};
+	String[] cs = {"ë©´", "ë–¡ë³¶ì´", "ë¦¬ì¡°ë˜", "êµ­/ì°Œê°œ", "ì•ˆì£¼", "ìŒë£Œ"};
 	
 	RecommendRecipe(){
-		//ÆĞ³Î »ı¼º°ú ·¹ÀÌ¾Æ¿ô ¼³Á¤
-		this.setLayout(new GridLayout(2,1)); //ÀüÃ¼ ÆäÀÌÁö ·¹ÀÌ¾Æ¿ô (2Çà 1¿­)
+		//íŒ¨ë„ ìƒì„±ê³¼ ë ˆì´ì•„ì›ƒ ì„¤ì •
+		this.setLayout(new GridLayout(2,1)); //ì „ì²´ í˜ì´ì§€ ë ˆì´ì•„ì›ƒ (2í–‰ 1ì—´)
 		mainPn = new JPanel();
-		mainPn.setBorder(new TitledBorder("Á¶ÇÕ ÃßÃµ"));
+		mainPn.setBorder(new TitledBorder("ì¡°í•© ì¶”ì²œ"));
 		
 		Pn1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		Pn2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -29,43 +29,43 @@ public class RecommendRecipe extends JPanel {
 		Pn4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		Pn5 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
-		//ÆĞ³Î ±¸ºĞ¼± (³ªÁß¿¡ Áö¿ï ÄÚµå)
-		Pn1.setBorder(new TitledBorder("»ç¿ëÃ³")); 
-		Pn2.setBorder(new TitledBorder("ºĞ·ù")); 
-		Pn3.setBorder(new TitledBorder("ºĞ·ù")); 
-		Pn4.setBorder(new TitledBorder("Àç·á/¸À"));
+		//íŒ¨ë„ êµ¬ë¶„ì„  (ë‚˜ì¤‘ì— ì§€ìš¸ ì½”ë“œ)
+		Pn1.setBorder(new TitledBorder("ì‚¬ìš©ì²˜")); 
+		Pn2.setBorder(new TitledBorder("ë¶„ë¥˜")); 
+		Pn3.setBorder(new TitledBorder("ë¶„ë¥˜")); 
+		Pn4.setBorder(new TitledBorder("ì¬ë£Œ/ë§›"));
 		
-		//ÄŞº¸¹Ú½º ÃÊ±âÈ­ (¹è¿­ÀÇ ³»¿ëÀ» ÄŞº¸¹Ú½º¿¡ ³Ö´Â °úÁ¤)
+		//ì½¤ë³´ë°•ìŠ¤ ì´ˆê¸°í™” (ë°°ì—´ì˜ ë‚´ìš©ì„ ì½¤ë³´ë°•ìŠ¤ì— ë„£ëŠ” ê³¼ì •)
 		combo1 = new JComboBox<String>(store);
 		combo2 = new JComboBox<String>(sd);
 		combo3 = new JComboBox<String>(cs);
 		
-		//¹öÆ°, ¶óº§, Ã¼Å©¹Ú½º ÃÊ±âÈ­
-		confirm_b = new JButton("È®ÀÎ");
-		l = new JLabel("¸®½ºÆ® ³ªÅ¸³¯ ÀÚ¸®");
+		//ë²„íŠ¼, ë¼ë²¨, ì²´í¬ë°•ìŠ¤ ì´ˆê¸°í™”
+		confirm_b = new JButton("í™•ì¸");
+		l = new JLabel("ë¦¬ìŠ¤íŠ¸ ë‚˜íƒ€ë‚  ìë¦¬");
 		
-		b1 = new JCheckBox("Çï½º");
-		b2 = new JCheckBox("°¡º­¿î ÇÑ³¢");
-		b3 = new JCheckBox("°¡º­¿î °£½Ä");
-		b4 = new JCheckBox("µçµçÇÑ ÇÑ³¢");
-		b5 = new JCheckBox("µçµçÇÑ °£½Ä");
-		b6 = new JCheckBox("»ó°ü ¾øÀ½"); //ÀÌ ¹öÆ°Àº ³»¿ë º¯ÇÏ´Â ÀÏÀÌ ¾ø¾î¼­ ¾Æ¿¹ "»ó°ü ¾øÀ½" À¸·Î ÃÊ±âÈ­Çß½À´Ï´Ù
+		b1 = new JCheckBox("í—¬ìŠ¤");
+		b2 = new JCheckBox("ê°€ë²¼ìš´ í•œë¼");
+		b3 = new JCheckBox("ê°€ë²¼ìš´ ê°„ì‹");
+		b4 = new JCheckBox("ë“ ë“ í•œ í•œë¼");
+		b5 = new JCheckBox("ë“ ë“ í•œ ê°„ì‹");
+		b6 = new JCheckBox("ìƒê´€ ì—†ìŒ"); 
 		
-		//°¢ ÆĞ³Î¿¡ ÄŞº¸¹Ú½º, ¹öÆ° ³Ö±â
+		//ê° íŒ¨ë„ì— ì½¤ë³´ë°•ìŠ¤, ë²„íŠ¼ ë„£ê¸°
 		Pn1.add(combo1); 
 		Pn2.add(combo2); 
 		Pn3.add(combo3); 
 		Pn4.add(b1); Pn4.add(b2); Pn4.add(b3); Pn4.add(b4); Pn4.add(b5); Pn4.add(b6);
 		Pn5.add(confirm_b);
 		
-		//¸ŞÀÎ ÆĞ³Î¿¡ ¼±ÅÃÁö ÆĞ³Î ³Ö±â
+		//ë©”ì¸ íŒ¨ë„ì— ì„ íƒì§€ íŒ¨ë„ ë„£ê¸°
 		mainPn.add(Pn1); 
 		mainPn.add(Pn2);
 		mainPn.add(Pn3); 
 		mainPn.add(Pn4);
 		mainPn.add(Pn5);
 		
-		//ÀüÃ¼ ÆĞ³Î¿¡ ¸ŞÀÎ ÆĞ³Î, ¶óº§ ³Ö±â (¸ŞÀÎ ÆĞ³ÎÀÌ 1Çà, ¶óº§ÀÌ 2ÇàÀ¸·Î µé¾î°¨)
+		//ì „ì²´ íŒ¨ë„ì— ë©”ì¸ íŒ¨ë„, ë¼ë²¨ ë„£ê¸° (ë©”ì¸ íŒ¨ë„ì´ 1í–‰, ë¼ë²¨ì´ 2í–‰ìœ¼ë¡œ ë“¤ì–´ê°)
 		this.add(mainPn);
 		this.add(l);
 		
@@ -73,50 +73,48 @@ public class RecommendRecipe extends JPanel {
 		start();
 	}
 	
-	public int menu1(int n) { //combo1(ÆíÀÇÁ¡, »ø·¯µğ Áß ÅÃ1)¿¡¼­ ¼±ÅÃÇÏ´Â °ª¿¡ µû¶ó ÆĞ³ÎÀÇ °¡½Ã¼ºÀ» Á¦¾îÇÏ´Â ¸Ş¼ÒµåÀÔ´Ï´Ù. 
+	public int menu1(int n) { //combo1(í¸ì˜ì , ìƒëŸ¬ë”” ì¤‘ íƒ1)ì—ì„œ ì„ íƒí•˜ëŠ” ê°’ì— ë”°ë¼ íŒ¨ë„ì˜ ê°€ì‹œì„±ì„ ì œì–´í•˜ëŠ” ë©”ì†Œë“œì…ë‹ˆë‹¤. 
 		switch(n) {
-			case 0 : // »ø·¯µğ ¼±ÅÃ½Ã
-				Pn2.setVisible(true); //»ø·¯µğ ºĞ·ù ÄŞº¸¹Ú½º µé¾îÀÖ´Â ÆĞ³Î
-				Pn4.setVisible(true); //Àç·á/¸À Ã¼Å©¹Ú½º µé¾îÀÖ´Â ÆĞ³Î
+			case 0 : // ìƒëŸ¬ë”” ì„ íƒì‹œ
+				Pn2.setVisible(true); //ìƒëŸ¬ë”” ë¶„ë¥˜ ì½¤ë³´ë°•ìŠ¤ ë“¤ì–´ìˆëŠ” íŒ¨ë„
+				Pn4.setVisible(true); //ì¬ë£Œ/ë§› ì²´í¬ë°•ìŠ¤ ë“¤ì–´ìˆëŠ” íŒ¨ë„
 				
-				Pn3.setVisible(false); //ÆíÀÇÁ¡ ºĞ·ù ÄŞº¸¹Ú½º µé¾îÀÖ´Â ÆĞ³Î
-				//menu3(combo2.getSelectedIndex());
+				Pn3.setVisible(false); //í¸ì˜ì  ë¶„ë¥˜ ì½¤ë³´ë°•ìŠ¤ ë“¤ì–´ìˆëŠ” íŒ¨ë„
 				return n;
 				
-			case 1 : // ÆíÀÇÁ¡ ¼±ÅÃ½Ã
+			case 1 : // í¸ì˜ì  ì„ íƒì‹œ
 				Pn3.setVisible(true);
 				
 				Pn4.setVisible(false);
 				Pn2.setVisible(false);
-				//menu2(combo3.getSelectedIndex());
 				return n;
 				
 			default : return -1;
 		}
 	}
 	
-	public void confirm_click(int n) { //È®ÀÎ ¹öÆ° Å¬¸¯½Ã ÄŞº¸¹Ú½º, Ã¼Å©¹Ú½º¿¡ ÇØ´çÇÏ´Â °ªÀ» °¡Á®¿Í¼­ ¶óº§ÀÇ ³»¿ëÀ» ¹Ù²Ù´Â ¸Ş¼ÒµåÀÔ´Ï´Ù.
+	public void confirm_click(int n) { //í™•ì¸ ë²„íŠ¼ í´ë¦­ì‹œ ì½¤ë³´ë°•ìŠ¤, ì²´í¬ë°•ìŠ¤ì— í•´ë‹¹í•˜ëŠ” ê°’ì„ ê°€ì ¸ì™€ì„œ ë¼ë²¨ì˜ ë‚´ìš©ì„ ë°”ê¾¸ëŠ” ë©”ì†Œë“œì…ë‹ˆë‹¤.
 		String m = "";
 		
 		switch(n) {
-			case 0 : // »ø·¯µğ ¼±ÅÃ½Ã
+			case 0 : // ìƒëŸ¬ë”” ì„ íƒì‹œ
 				m += (String)combo1.getSelectedItem() + " " + (String)combo2.getSelectedItem() + " ";
 				
 				if(b1.isSelected()) m += b1.getText();
 				if(b2.isSelected()) m += b2.getText();
 				if(b3.isSelected()) m += b3.getText();
 				if(b4.isSelected()) m += b4.getText();
-				if(b5.isSelected()) m += b5.getText(); //b6Àº "»ó°ü ¾øÀ½"¹öÆ° ÀÌ¶ó °ª °¡Á®¿Ã ÇÊ¿ä X
+				if(b5.isSelected()) m += b5.getText(); //b6ì€ "ìƒê´€ ì—†ìŒ"ë²„íŠ¼ ì´ë¼ ê°’ ê°€ì ¸ì˜¬ í•„ìš” X
 			
-				m += "¿¡ ÇØ´çÇÏ´Â ¸®½ºÆ® ³ªÅ¸³¯ ÀÚ¸®";
-				l.setText(m); //ÄŞº¸¹Ú½º, Ã¼Å©¹Ú½º¿¡¼­ ¼±ÅÃµÈ ³»¿ëÀ» ÃÖÁ¾ÀûÀ¸·Î ¶óº§¿¡¼­ È®ÀÎ 
+				m += "ì— í•´ë‹¹í•˜ëŠ” ë¦¬ìŠ¤íŠ¸ ë‚˜íƒ€ë‚  ìë¦¬";
+				l.setText(m); //ì½¤ë³´ë°•ìŠ¤, ì²´í¬ë°•ìŠ¤ì—ì„œ ì„ íƒëœ ë‚´ìš©ì„ ìµœì¢…ì ìœ¼ë¡œ ë¼ë²¨ì—ì„œ í™•ì¸ 
 				return;
 				
-			case 1 : // ÆíÀÇÁ¡ ¼±ÅÃ½Ã
+			case 1 : // í¸ì˜ì  ì„ íƒì‹œ
 				m += (String)combo1.getSelectedItem() + " " + (String)combo3.getSelectedItem() + " ";
-				m += "¿¡ ÇØ´çÇÏ´Â ¸®½ºÆ® ³ªÅ¸³¯ ÀÚ¸®";
+				m += "ì— í•´ë‹¹í•˜ëŠ” ë¦¬ìŠ¤íŠ¸ ë‚˜íƒ€ë‚  ìë¦¬";
 				
-				l.setText(m); //ÄŞº¸¹Ú½º, Ã¼Å©¹Ú½º¿¡¼­ ¼±ÅÃµÈ ³»¿ëÀ» ÃÖÁ¾ÀûÀ¸·Î ¶óº§¿¡¼­ È®ÀÎ 
+				l.setText(m); //ì½¤ë³´ë°•ìŠ¤, ì²´í¬ë°•ìŠ¤ì—ì„œ ì„ íƒëœ ë‚´ìš©ì„ ìµœì¢…ì ìœ¼ë¡œ ë¼ë²¨ì—ì„œ í™•ì¸ 
 				return;
 				
 			default : return;
@@ -125,39 +123,39 @@ public class RecommendRecipe extends JPanel {
 		
 	}
 	
-	public void b_Initialization(int n) { //Ã¼Å©¹Ú½ºÀÇ »óÅÂ¸¦ ÃÊ±âÈ­ÇÏ´Â ¸Ş¼ÒµåÀÔ´Ï´Ù.
+	public void b_Initialization(int n) { //ì²´í¬ë°•ìŠ¤ì˜ ìƒíƒœë¥¼ ì´ˆê¸°í™”í•˜ëŠ” ë©”ì†Œë“œì…ë‹ˆë‹¤.
 		b1.setSelected(false); 
 		b2.setSelected(false);
 		b3.setSelected(false);
 		b4.setSelected(false); 
 		b5.setSelected(false);
-		if(n == 0) b6.setSelected(false); //ÄŞº¸¹Ú½º¿¡ ÀÌº¥Æ® ¹ß»ıÇÒ¶§¸¸ ÆÄ¶ó¹ÌÅÍ¸¦ 0À¸·Î Áà¼­ ¸¶Áö¸· ¹öÆ°±îÁö ÃÊ±âÈ­ 
+		if(n == 0) b6.setSelected(false); //ì½¤ë³´ë°•ìŠ¤ì— ì´ë²¤íŠ¸ ë°œìƒí• ë•Œë§Œ íŒŒë¼ë¯¸í„°ë¥¼ 0ìœ¼ë¡œ ì¤˜ì„œ ë§ˆì§€ë§‰ ë²„íŠ¼ê¹Œì§€ ì´ˆê¸°í™” 
 	}
 	
-	public void b6_Initialization() { //"»ó°ü¾øÀ½" ¼±ÅÃ ÈÄ ´Ù½Ã ´Ù¸¥ Ã¼Å©¹Ú½º¸¦ Å¬¸¯ÇÏ¸é "»ó°ü¾øÀ½" ¹öÆ°¿¡¼­ Ã¼Å©°¡ ÇØÁ¦µÇµµ·Ï ÇÏ´Â ¿ªÇÒÀÇ ¸Ş¼ÒµåÀÔ´Ï´Ù.
+	public void b6_Initialization() { //"ìƒê´€ì—†ìŒ" ì„ íƒ í›„ ë‹¤ì‹œ ë‹¤ë¥¸ ì²´í¬ë°•ìŠ¤ë¥¼ í´ë¦­í•˜ë©´ "ìƒê´€ì—†ìŒ" ë²„íŠ¼ì—ì„œ ì²´í¬ê°€ í•´ì œë˜ë„ë¡ í•˜ëŠ” ì—­í• ì˜ ë©”ì†Œë“œì…ë‹ˆë‹¤.
 		if(b1.isSelected() || b2.isSelected() || b3.isSelected() || b4.isSelected() || b5.isSelected()) 
 			b6.setSelected(false);	
 	}
 	
-	public void start() { //ÄŞº¸¹Ú½º, Ã¼Å©¹Ú½º, ¹öÆ°¿¡¼­ ¹ß»ıÇÏ´Â Å¬¸¯ ÀÌº¥Æ®¸¦ Ã³¸®ÇÏ´Â ¸Ş¼ÒµåÀÔ´Ï´Ù.
-		combo1.addItemListener(e -> { menu1(combo1.getSelectedIndex()); });	//»ç¿ëÃ³ ÄŞº¸¹Ú½º
-		combo2.addItemListener(e -> { b_Initialization(0); }); //(»ø·¯µğ)ºĞ·ù ÄŞº¸¹Ú½º
+	public void start() { //ì½¤ë³´ë°•ìŠ¤, ì²´í¬ë°•ìŠ¤, ë²„íŠ¼ì—ì„œ ë°œìƒí•˜ëŠ” í´ë¦­ ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•˜ëŠ” ë©”ì†Œë“œì…ë‹ˆë‹¤.
+		combo1.addItemListener(e -> { menu1(combo1.getSelectedIndex()); });	//ì‚¬ìš©ì²˜ ì½¤ë³´ë°•ìŠ¤
+		combo2.addItemListener(e -> { b_Initialization(0); }); //(ìƒëŸ¬ë””)ë¶„ë¥˜ ì½¤ë³´ë°•ìŠ¤
 		
-		confirm_b.addActionListener(e -> { confirm_click(menu1(combo1.getSelectedIndex())); }); //È®ÀÎ ¹öÆ°
+		confirm_b.addActionListener(e -> { confirm_click(menu1(combo1.getSelectedIndex())); }); //í™•ì¸ ë²„íŠ¼
 		
-		b1.addActionListener(e -> { b6_Initialization(); }); //Ã¼Å©¹Ú½º 1/2/3/4/5¿¡ ÀÌº¥Æ® ¹ß»ı½Ã "»ó°ü¾øÀ½" ¹öÆ°(6)À» ÃÊ±âÈ­ÇÕ´Ï´Ù.
+		b1.addActionListener(e -> { b6_Initialization(); }); //ì²´í¬ë°•ìŠ¤ 1/2/3/4/5ì— ì´ë²¤íŠ¸ ë°œìƒì‹œ "ìƒê´€ì—†ìŒ" ë²„íŠ¼(6)ì„ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
 		b2.addActionListener(e -> { b6_Initialization(); });
 		b3.addActionListener(e -> { b6_Initialization(); });
 		b4.addActionListener(e -> { b6_Initialization(); });
 		b5.addActionListener(e -> { b6_Initialization(); });
-		b6.addActionListener(e -> { b_Initialization(1);} ); //Ã¼Å©¹Ú½º¿¡¼­ "»ó°ü¾øÀ½"(6)À» ¼±ÅÃ½Ã ³ª¸ÓÁö Ã¼Å©¹Ú½º(1/2/3/4/5)°¡ ÃÊ±âÈ­µË´Ï´Ù.
+		b6.addActionListener(e -> { b_Initialization(1);} ); //ì²´í¬ë°•ìŠ¤ì—ì„œ "ìƒê´€ì—†ìŒ"(6)ì„ ì„ íƒì‹œ ë‚˜ë¨¸ì§€ ì²´í¬ë°•ìŠ¤(1/2/3/4/5)ê°€ ì´ˆê¸°í™”ë©ë‹ˆë‹¤.
 	}
 	
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("·¹½ÃÇÇ ÃßÃµ ÇÁ·Î±×·¥");
+		JFrame frame = new JFrame("ë ˆì‹œí”¼ ì¶”ì²œ í”„ë¡œê·¸ë¨");
 		frame.getContentPane().add(new RecommendRecipe());
 		
-		frame.setBounds(300, 200, 600, 450); //¾Õ: ÇÁ·Î±×·¥ ½ÇÇà½Ã È­¸é ³» x/y ÁÂÇ¥ + µÚ: ÇÁ·Î±×·¥ °¡·Î ¼¼·Î ±æÀÌ 
+		frame.setBounds(300, 200, 600, 450); //ì•: í”„ë¡œê·¸ë¨ ì‹¤í–‰ì‹œ í™”ë©´ ë‚´ x/y ì¢Œí‘œ + ë’¤: í”„ë¡œê·¸ë¨ ê°€ë¡œ ì„¸ë¡œ ê¸¸ì´ 
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
