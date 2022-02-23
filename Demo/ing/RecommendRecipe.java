@@ -38,7 +38,7 @@ class Recipe {
 	
 	public boolean object_filter(String cate, String cate2) {
 		if (this.cate.equals(cate)) 
-			if(cate2.equals("x")) return true; 						//샐러디 체크박스 "상관없음" 선택시 cate2가 x로 들어옴. 이 경우 cate1만 일치해도 다 t 반환
+			if(cate2.equals("x")) return true; 				//샐러디 체크박스 "상관없음" 선택시 cate2가 x로 들어옴. 이 경우 cate1만 일치해도 다 t 반환
 			else if (cate2.contains(this.cate2)) return true; 		//이외 버튼 클릭시 포함관계 따져서 this.cate2가 cate2에 들어있으면 t 반환
 			else return false;
 
@@ -56,17 +56,17 @@ class Recipe {
 }
 
 public class RecommendRecipe extends JPanel {
-	private static final long serialVersionUID = 1L; //직렬화 관련 코드 - https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=kkson50&logNo=220564273220
+	private static final long serialVersionUID = 1L; 	//직렬화 관련 코드 - https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=kkson50&logNo=220564273220
 	
 	private JPanel mainPn, Pn1, Pn4, Pn5; 
 	private JComboBox<String> combo1, combo2, combo3; 	//사용처, 샐러디분류, 편의점분류 콤보박스 
 	private JCheckBox b1, b2, b3, b4, b5, b6; 		//체크박스 6개
-	private JButton confirm_b; 				/확인 버튼
+	private JButton confirm_b; 				//확인 버튼
 	
 	private JList<String> list;
 	private DefaultListModel<String> dlist;			//리스트 내용 변경을 위한 DefaultListModel 객체 
 	
-	String[] store = {"샐러디", "편의점"}; 			//콤보박스 안에 들어갈 내용 배열
+	String[] store = {"샐러디", "편의점"};			//콤보박스 안에 들어갈 내용 배열
 	String[] sd = {"웜볼", "샐러드", "샌드", "랩", "웜랩"};
 	String[] cs = {"면", "떡볶이", "리조또", "국/찌개", "안주", "음료"};
 	
@@ -80,11 +80,11 @@ public class RecommendRecipe extends JPanel {
 		Pn4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		Pn5 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
-		//패널 구분선 (나중에 지울 코드)
+		//패널 구분선
 		Pn1.setBorder(new TitledBorder("메뉴")); 
 		Pn4.setBorder(new TitledBorder(""));
 		
-		//콤보박스 초기화 (배열의 내용을 콤보박스에 넣는 과정)
+		//콤보박스 초기화
 		combo1 = new JComboBox<String>(store);
 		combo2 = new JComboBox<String>(sd);
 		combo3 = new JComboBox<String>(cs);
@@ -153,11 +153,11 @@ public class RecommendRecipe extends JPanel {
 				if(b5.isSelected()) m += " " + b5.getText(); 
 				if(b6.isSelected()) m = "x";
 			
-				Recipe.filter((String)combo2.getSelectedItem(), m); //샐러디는 체크박스 내용을 문자열 하나로 묶어서 보냄
+				Recipe.filter((String)combo2.getSelectedItem(), m); 	//샐러디는 체크박스 내용을 문자열 하나로 묶어서 보냄
 				return;
 				
 			case 1 : // combo1에서 편의점 선택시
-				Recipe.filter((String)combo3.getSelectedItem(), "x"); //편의점은 분류가 1개라서 2번째 카테고리는 x로 넣음
+				Recipe.filter((String)combo3.getSelectedItem(), "x"); 	//편의점은 분류가 1개라서 2번째 카테고리는 x로 넣음
 				return;
 				
 			default : return;
