@@ -5,17 +5,16 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.ArrayList;
+import java.util.*;
 
 class Recipe {
 	private String id, name, cate, cate2, ingredient, recipe, image;
 	public static ArrayList<Recipe> recipes = new ArrayList<Recipe>(); 	
-	public static ArrayList<Recipe> filtered_recipes = new ArrayList<Recipe>(); 	
+	public static ArrayList<Recipe> filtered_recipes = new ArrayList<Recipe>();
+	public static ArrayList<String> filtered_recipes_name = new ArrayList<String>();
 
 	Recipe(String id, String name, String cate, String cate2, String ingredient, String recipe, String image){
 		this.id = id;
@@ -27,16 +26,6 @@ class Recipe {
 		this.image = image;
 		
 		recipes.add(this); //recipes 배열에 해당 객체를 추가합니다.
-	}
-	
-	public void printRecipe() {
-		System.out.println(id);
-		System.out.println(name);
-		System.out.println(cate);
-		System.out.println(cate2); 
-		System.out.println(ingredient);
-		System.out.println(recipe);
-		System.out.println(image + "\n");
 	}
 	
 	public static void filter(String cate, String cate2) { 
@@ -55,15 +44,27 @@ class Recipe {
 
 		else return false;
 	}
+	
+	public static Object[] getFilteredList() {
+		for(Recipe aRecipe : Recipe.filtered_recipes)
+			filtered_recipes_name.add(aRecipe.getName());
+		
+		return filtered_recipes_name.toArray();
+	}
+	
+	public String getName() { return this.name; }
 }
 
-public class RecommendRecipe2 extends JPanel {
+public class RecommendRecipe extends JPanel {
 	private static final long serialVersionUID = 1L; //직렬화 관련 코드 - https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=kkson50&logNo=220564273220
 	
-	JPanel mainPn, Pn1, Pn2, Pn3, Pn4, Pn5; 
-	JComboBox<String> combo1, combo2, combo3; 	//차례대로 사용처, 샐러디분류, 편의점분류 콤보박스 
-	JCheckBox b1, b2, b3, b4, b5, b6; 			//체크박스 6개
-	JButton confirm_b; 							//확인 버튼
+	private JPanel mainPn, Pn1, Pn4, Pn5; 
+	private JComboBox<String> combo1, combo2, combo3; 	//사용처, 샐러디분류, 편의점분류 콤보박스 
+	private JCheckBox b1, b2, b3, b4, b5, b6; 		//체크박스 6개
+	private JButton confirm_b; 				/확인 버튼
+	
+	private JList<String> list;
+	private DefaultListModel<String> dlist;			//리스트 내용 변경을 위한 DefaultListModel 객체 
 	
 	String[] store = {"샐러디", "편의점"}; 			//콤보박스 안에 들어갈 내용 배열
 	String[] sd = {"웜볼", "샐러드", "샌드", "랩", "웜랩"};
@@ -76,23 +77,19 @@ public class RecommendRecipe2 extends JPanel {
 		mainPn.setBorder(new TitledBorder("조합 추천"));
 		
 		Pn1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		Pn2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		Pn3 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		Pn4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		Pn5 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
 		//패널 구분선 (나중에 지울 코드)
-		Pn1.setBorder(new TitledBorder("사용처")); 
-		Pn2.setBorder(new TitledBorder("분류")); 
-		Pn3.setBorder(new TitledBorder("분류")); 
-		Pn4.setBorder(new TitledBorder("재료/맛"));
+		Pn1.setBorder(new TitledBorder("메뉴")); 
+		Pn4.setBorder(new TitledBorder(""));
 		
 		//콤보박스 초기화 (배열의 내용을 콤보박스에 넣는 과정)
 		combo1 = new JComboBox<String>(store);
 		combo2 = new JComboBox<String>(sd);
 		combo3 = new JComboBox<String>(cs);
 		
-		//버튼, 체크박스 초기화
+		//버튼, 체크박스, 리스트 초기화
 		confirm_b = new JButton("확인");
 		
 		b1 = new JCheckBox("헬스");
@@ -102,48 +99,49 @@ public class RecommendRecipe2 extends JPanel {
 		b5 = new JCheckBox("든든한 간식");
 		b6 = new JCheckBox("상관 없음"); 
 		
+		dlist = new DefaultListModel<String>();
+		list = new JList<String>(dlist);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //리스트에서 하나의 요소만 선택 가능하게 설정 
+		
 		//각 패널에 콤보박스, 버튼 넣기
-		Pn1.add(combo1); 
-		Pn2.add(combo2); 
-		Pn3.add(combo3); 
+		Pn1.add(combo1); Pn1.add(combo2); Pn1.add(combo3); 
 		Pn4.add(b1); Pn4.add(b2); Pn4.add(b3); Pn4.add(b4); Pn4.add(b5); Pn4.add(b6);
 		Pn5.add(confirm_b);
 		
 		//메인 패널에 선택지 패널 넣기
 		mainPn.add(Pn1); 
-		mainPn.add(Pn2);
-		mainPn.add(Pn3); 
 		mainPn.add(Pn4);
 		mainPn.add(Pn5);
 		
-		//전체 패널에 메인 패널, 라벨 넣기 (메인 패널이 1행, 라벨이 2행으로 들어감)
+		//전체 패널에 메인 패널, 리스트 넣기
 		this.add(mainPn);
-		
+		this.add(new JScrollPane(list)); //스크롤 달린 패널로 만들어서 넣음
+
 		menu(combo1.getSelectedIndex());
 		start();
 	}
 	
-	public int menu(int n) { //combo1(편의점, 샐러디 중 택1)에서 선택하는 값에 따라 패널의 가시성을 제어하는 메소드입니다. 
+	public int menu(int n) { //combo1에서 선택하는 값에 따라 가시성을 제어하는 메소드입니다. 
 		switch(n) {
-			case 0 : // 샐러디 선택시
-				Pn2.setVisible(true); //샐러디 분류 콤보박스 들어있는 패널
-				Pn4.setVisible(true); //재료/맛 체크박스 들어있는 패널
+			case 0 : //샐러디
+				combo2.setVisible(true); 	//샐러디 분류 콤보박스
+				Pn4.setVisible(true); 		//체크박스 들어있는 패널
 				
-				Pn3.setVisible(false); //편의점 분류 콤보박스 들어있는 패널
+				combo3.setVisible(false); 	//편의점 분류 콤보박스
 				return n;
 				
-			case 1 : // 편의점 선택시
-				Pn3.setVisible(true);
+			case 1 : //편의점
+				combo3.setVisible(true);
 				
 				Pn4.setVisible(false);
-				Pn2.setVisible(false);
+				combo2.setVisible(false);
 				return n;
 				
 			default : return -1;
 		}
 	}
 	
-	public void confirm_click(int n) { //확인버튼 클릭시 콤보박스, 체크박스에 해당하는 값을 가져와서 Recipe 클래스의 필터링 메소드 호출
+	public void clickConfirm(int n) { //확인버튼 클릭시 콤보박스, 체크박스에 해당하는 값을 가져와서 Recipe 클래스의 필터링 메소드 호출
 		String m = "";
 		
 		switch(n) {
@@ -182,16 +180,15 @@ public class RecommendRecipe2 extends JPanel {
 	
 	public void start() { //클릭 이벤트를 처리하는 메소드입니다.
 		combo1.addItemListener(e -> { menu(combo1.getSelectedIndex()); });	//사용처 콤보박스
-		combo2.addItemListener(e -> { b_Initialization(0); }); //샐러디 분류 콤보박스에 이벤트 발생시 체크박스 모두 초기화
+		combo2.addItemListener(e -> { b_Initialization(0); }); 			//샐러디 분류 콤보박스에 이벤트 발생시 체크박스 모두 초기화
 		
 		confirm_b.addActionListener(e -> { 
-			confirm_click(menu(combo1.getSelectedIndex())); 
+			dlist.removeAllElements(); //리스트 초기화
+			clickConfirm(menu(combo1.getSelectedIndex()));
 			
-			for(Recipe aRecipe : Recipe.filtered_recipes) 
-				aRecipe.printRecipe(); 
-			
-			System.out.println("\n\n\n\n");
-		}); //확인 버튼 
+			for(Recipe aRecipe : Recipe.filtered_recipes)
+				dlist.addElement(aRecipe.getName()); //필터링된 결과를 리스트에 추가
+		}); 
 		
 		b1.addActionListener(e -> { b6_Initialization(); }); //체크박스 1/2/3/4/5에 이벤트 발생시 "상관없음" 버튼(6) 초기화
 		b2.addActionListener(e -> { b6_Initialization(); });
@@ -199,11 +196,18 @@ public class RecommendRecipe2 extends JPanel {
 		b4.addActionListener(e -> { b6_Initialization(); });
 		b5.addActionListener(e -> { b6_Initialization(); });
 		b6.addActionListener(e -> { b_Initialization(1);} ); //체크박스에서 "상관없음"(6) 선택시 나머지 체크박스(1/2/3/4/5)가 초기화
+		
+		/*
+		list.addListSelectionListener(e -> { 
+			String[] args = new String[0];
+			ShowRecipe.main(args);
+		}); //리스트 항목 선택
+		*/
 	}
 	
 	public static void main(String[] args) {
 		try{
-			Path path = Paths.get("C:\\Users\\Jeongyeon\\Desktop\\temp_recipe.txt");
+			//Path path = Paths.get("C:\\Users\\Jeongyeon\\Desktop\\temp_recipe.txt");
 			//Path path = Paths.get("경로");
 			
 			Stream<String> lines = Files.lines(path);
@@ -213,13 +217,13 @@ public class RecommendRecipe2 extends JPanel {
 			for (int j = 7 ; j < Arr.length ; ) //7부터 시작하는 이유 : 처음에 id(0) ~ image(6) 건너뛰려고 
 				new Recipe(Arr[j++], Arr[j++], Arr[j++], Arr[j++], Arr[j++], Arr[j++], Arr[j++]); //레시피 하나 가져와서 Recipe 객체 만들기
 				
-            lines.close();
-	     } catch(IOException e){ e.getStackTrace(); }
+            		lines.close();
+	     	} catch(IOException e){ e.getStackTrace(); }
 		
 		JFrame frame = new JFrame("레시피 추천 프로그램");
-		frame.getContentPane().add(new RecommendRecipe2());
+		frame.getContentPane().add(new RecommendRecipe());
 		
-		frame.setBounds(300, 200, 600, 450); //앞: 프로그램 실행시 화면 내 x/y 좌표 + 뒤: 프로그램 가로 세로 길이 
+		frame.setBounds(300, 200, 600, 400); //앞: 프로그램 실행시 화면 내 x/y 좌표 + 뒤: 프로그램 가로 세로 길이 
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
