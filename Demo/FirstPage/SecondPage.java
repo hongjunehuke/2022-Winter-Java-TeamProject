@@ -7,7 +7,7 @@ public class SecondPage extends JFrame {
     super("This is Second Page");
 
     JPanel panel2 = new JPanel();
-    panel2.setSize(300, 200);
+    this.setSize(300, 200);
 
     Dimension frameSize = getSize();
     Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
