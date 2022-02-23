@@ -70,7 +70,7 @@ public class RecommendRecipe extends JPanel {
 	String[] sd = {"웜볼", "샐러드", "샌드", "랩", "웜랩"};
 	String[] cs = {"면", "떡볶이", "리조또", "국/찌개", "안주", "음료"};
 	
-	RecommendRecipe2(){
+	RecommendRecipe(){
 		//패널 생성과 레이아웃 설정
 		this.setLayout(new GridLayout(2,1)); //전체 페이지 레이아웃 (2행 1열)
 		mainPn = new JPanel();
