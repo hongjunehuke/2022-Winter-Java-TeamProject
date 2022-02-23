@@ -22,6 +22,7 @@ public class FirstPage extends JFrame {
                      (windowSize.height - frameSize.height) / 2);
 
     this.add(panel1);
+
     panel1.add(label1);
     panel1.add(startBtn);
 
