@@ -11,7 +11,7 @@ public class FirstPage extends JFrame {
 
     JPanel panel1 = new JPanel();
     // GUI 사이즈 통일해야 할 듯 합니다!
-    panel1.setSize(300, 200);
+    this.setSize(300, 200);
 
     JButton startBtn = new JButton("시작");
 
