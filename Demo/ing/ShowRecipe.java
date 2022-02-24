@@ -75,14 +75,18 @@ public class ShowRecipe extends JPanel {
 	}
 
 	public static void main(Recipe args, int i) {
-		JFrame r_frame = new JFrame("상세 레시피");
-		r_frame.getContentPane().add(new ShowRecipe(args, i)); 
-		
-		if(i == 0) r_frame.setBounds(100, 100, 700, 200);
-		else r_frame.setBounds(100, 100, 700, 550);
-		
-		r_frame.setVisible(true);
-		r_frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		if(args.getId().equals("x")) //비정상 레시피 들어오면 종료
+			return;
+		else {
+			JFrame r_frame = new JFrame("상세 레시피");
+			r_frame.getContentPane().add(new ShowRecipe(args, i)); 
+
+			if(i == 0) r_frame.setBounds(100, 100, 700, 200);
+			else r_frame.setBounds(100, 100, 700, 550);
+
+			r_frame.setVisible(true);
+			r_frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		}
 	}
 }
 
