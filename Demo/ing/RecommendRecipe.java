@@ -234,7 +234,9 @@ public class RecommendRecipe extends JPanel {
 		
 		list.addListSelectionListener(e -> { //리스트 항목 선택
 			String selectedRecipe = list.getSelectedValue();
-			ShowRecipe.main(Recipe.findRecipe(selectedRecipe), combo1.getSelectedIndex());
+			if(!e.getValueIsAdjusting()) //이벤트 중복 발생 방지 (새 창이 두 개 뜨던 그거)
+				ShowRecipe.main(Recipe.findRecipe(selectedRecipe), combo1.getSelectedIndex());
+		
 		}); 
 	}
 	
