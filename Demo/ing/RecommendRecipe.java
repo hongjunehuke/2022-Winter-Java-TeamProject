@@ -38,7 +38,7 @@ class Recipe {
 	
 	public boolean object_filter(String cate, String cate2) {
 		if (this.cate.contains(cate)) 
-			if(cate2.equals("x")) return true; 						        //샐러디 체크박스 "상관없음" 선택시 or 편의점 레시피는 다 여기서 t 반환하고 끝
+			if(cate2.equals("x")) return true; 				//샐러디 체크박스 "상관없음" 선택시 or 편의점 레시피는 다 여기서 t 반환하고 끝
 			else if (cate2.contains(this.cate2)) return true; 		//샐러디 체크박스에서 이외 버튼 클릭시 포함관계 따져서 this.cate2가 cate2에 들어있으면 t 반환
 			else return false;
 
@@ -53,7 +53,7 @@ class Recipe {
 	}
 	
 	public static Recipe findRecipe(String name) {
-		Recipe r = new Recipe("", "", "", "", "", "", "");
+		Recipe r = new Recipe("x", "", "", "", "", "", "");
 		
 		for(Recipe aRecipe : Recipe.filtered_recipes)
 			if(aRecipe.getName().equals(name))
@@ -79,13 +79,13 @@ public class RecommendRecipe extends JPanel {
 	
 	private JPanel mainPn, Pn1, Pn4, Pn5; 
 	private JComboBox<String> combo1, combo2, combo3; 	//사용처, 샐러디분류, 편의점분류 콤보박스 
-	private JCheckBox b1, b2, b3, b4, b5, b6; 		      //체크박스 6개
-	private JButton confirm_b; 				                  //확인 버튼
+	private JCheckBox b1, b2, b3, b4, b5, b6; 		//체크박스 6개
+	private JButton confirm_b;				//확인 버튼
 	
 	private JList<String> list;
-	private DefaultListModel<String> dlist;			        //리스트 내용 변경을 위한 DefaultListModel 객체 
+	private DefaultListModel<String> dlist;			//리스트 내용 변경을 위한 DefaultListModel 객체 
 	
-	String[] store = {"샐러디", "편의점"};			         //콤보박스 안에 들어갈 내용 배열
+	String[] store = {"샐러디", "편의점"};		   //콤보박스 안에 들어갈 내용 배열
 	String[] sd = {"웜볼", "샐러드", "샌드", "랩", "웜랩"};
 	String[] cs = {"면", "떡볶이", "리조또", "국/찌개", "안주", "음료"};
 	
