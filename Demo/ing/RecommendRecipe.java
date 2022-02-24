@@ -219,7 +219,9 @@ public class RecommendRecipe extends JPanel {
 		
 		confirm_b.addActionListener(e -> { 
 			clickConfirm(menu(combo1.getSelectedIndex()));
-			//dlist.removeAllElements(); 여기 주석 풀고 실행하면 리스트 초기화 부분 에러나니까 일단 주석처리 하고 써주세요 ㅠㅠ
+			
+			if(e.getSource() == confirm_b)
+				dlist.removeAllElements(); 
 			
 			for(Recipe aRecipe : Recipe.filtered_recipes)
 				dlist.addElement(aRecipe.getName()); //필터링된 결과를 리스트에 추가
