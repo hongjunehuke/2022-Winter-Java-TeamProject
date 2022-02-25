@@ -1,12 +1,10 @@
-package connectMySQL;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Test {
+public class Db_connection_test2 {
   static final String TEST_DRIVER =
       "com.mysql.jdbc.Driver"; // jdbc 드라이버 주소
   static final String DB_URL =
