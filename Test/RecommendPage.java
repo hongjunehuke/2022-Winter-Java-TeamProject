@@ -1,8 +1,7 @@
 // (1) FirstPage에서 RecommendRecipe로 넘어가는 과정 확인할 때: start()에 있는 try절 주석 풀기
 // (2) RecommendRecipe만 실행하고 싶을 때: 아래 main() 주석 풀고 사용하기 
 	
-package recipe_project;
-
+//package recipe_project;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -15,6 +14,7 @@ import java.util.stream.Stream;
 public class RecommendPage extends JPanel {
 	private static final long serialVersionUID = 1L; 	
 	
+	MainPanel mp;
 	private JPanel mainPn, Pn1, Pn2, Pn3; 
 	private JComboBox<String> storeCombo, saladyCombo, cvsCombo; 	
 	private JCheckBox b1, b2, b3, b4, b5, b6; 	//체크박스 6개
@@ -28,6 +28,10 @@ public class RecommendPage extends JPanel {
 	String[] cs = {"면", "떡볶이", "리조또", "국/찌개", "안주", "음료"};
 	
 	RecommendPage(){
+		extractData();
+		
+		this.mp = mp;
+
 		//패널 생성과 레이아웃 설정
 		this.setLayout(new GridLayout(2,1)); 
 		mainPn = new JPanel();
@@ -76,6 +80,20 @@ public class RecommendPage extends JPanel {
 
 		changeVisibleComponent(storeCombo.getSelectedIndex());
 		start();
+	}
+
+	void extractData() {
+		try{
+			Path path = Paths.get("txt 파일 절대 경로 넣어보세요!!");
+			
+			Stream<String> lines = Files.lines(path);
+			String content = lines.collect(Collectors.joining(System.lineSeparator()));
+			String[] Arr = content.split("\t");
+			
+			for (int j = 7 ; j < Arr.length ; ) //7부터 시작하는 이유 : 처음에 id(0) ~ image(6) 건너뛰려고 
+				new Recipe(Arr[j++], Arr[j++], Arr[j++], Arr[j++], Arr[j++], Arr[j++], Arr[j++]); //레시피 하나 가져와서 Recipe 객체 만들기
+			lines.close();
+		} catch(IOException e){ e.getStackTrace(); }
 	}
 	
 	public int changeVisibleComponent(int n) {  
@@ -135,23 +153,7 @@ public class RecommendPage extends JPanel {
 			b6.setSelected(false);	
 	}
 	
-	public void start() { //이벤트 리스너 연결 
-		
-		/*
-		try{
-			Path path = Paths.get("C:\\Users\\Jeongyeon\\Desktop\\temp_recipe.txt");
-	
-			Stream<String> lines = Files.lines(path);
-			String content = lines.collect(Collectors.joining(System.lineSeparator()));
-			String[] Arr = content.split("\t");
-			
-			for (int j = 7 ; j < Arr.length ; ) //7부터 시작하는 이유 : 처음에 id(0) ~ image(6) 건너뛰려고 
-				new Recipe(Arr[j++], Arr[j++], Arr[j++], Arr[j++], Arr[j++], Arr[j++], Arr[j++]); //레시피 하나 가져와서 Recipe 객체 만들기
-				
-            		lines.close();
-	     } catch(IOException e){ e.getStackTrace(); }
-		*/
-		
+	public void start() { //이벤트 리스너 연결 		
 		storeCombo.addItemListener(e -> { 
 			changeVisibleComponent(storeCombo.getSelectedIndex()); 
 			changeCheckboxState(0);
@@ -183,27 +185,5 @@ public class RecommendPage extends JPanel {
 				ShowRecipe.main(Recipe.findRecipe(selectedRecipe), storeCombo.getSelectedIndex());
 		}); 
 		
-	}
-	
-	public static void main(String[] args) {
-		try{
-			Path path = Paths.get("C:\\Users\\Jeongyeon\\Desktop\\temp_recipe.txt");
-			
-			Stream<String> lines = Files.lines(path);
-			String content = lines.collect(Collectors.joining(System.lineSeparator()));
-			String[] Arr = content.split("\t");
-			
-			for (int j = 7 ; j < Arr.length ; ) //7부터 시작하는 이유 : 처음에 id(0) ~ image(6) 건너뛰려고 
-				new Recipe(Arr[j++], Arr[j++], Arr[j++], Arr[j++], Arr[j++], Arr[j++], Arr[j++]); //레시피 하나 가져와서 Recipe 객체 만들기
-				
-            		lines.close();
-	     } catch(IOException e){ e.getStackTrace(); }
-		
-		JFrame r_frame = new JFrame("레시피 추천 프로그램");
-		r_frame.getContentPane().add(new RecommendPage());
-		r_frame.setBounds(100, 100, 600, 400);
-		r_frame.setVisible(true);
-		r_frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-	}
-	
+	}	
 }
