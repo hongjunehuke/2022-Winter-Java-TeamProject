@@ -26,6 +26,11 @@ public class ShowRecipe extends JPanel {
 		Pn2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		Pn3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		Pn4 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+		JPanel dummyP = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JLabel dummyL = new JLabel();
+		dummyP.add(dummyL);
+		mainPn.add(dummyP); 
 		
 		/* 음식명 */
 		nameLb = new JLabel(r.getName());
