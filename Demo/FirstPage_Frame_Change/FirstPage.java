@@ -11,6 +11,8 @@ public class FirstPage extends JFrame {
     this.setSize(600, 400);
     JPanel panel1 = new JPanel();
 
+    // 여기서 버튼이랑 텍스트를 배치하는 레이아웃 작업이 필요할 듯 하다
+
     JButton startBtn = new JButton("시작");
 
     JLabel label1 = new JLabel();
