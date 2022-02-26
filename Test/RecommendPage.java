@@ -27,7 +27,7 @@ public class RecommendPage extends JPanel {
 	String[] sd = {"웜볼", "샐러드", "샌드", "랩", "웜랩"};
 	String[] cs = {"면", "떡볶이", "리조또", "국/찌개", "안주", "음료"};
 	
-	RecommendPage(){
+	RecommendPage(MainPanel mp){
 		extractData();
 		
 		this.mp = mp;
