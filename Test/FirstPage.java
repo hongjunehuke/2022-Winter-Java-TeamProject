@@ -39,9 +39,9 @@ public class FirstPage extends JPanel { // 1번째 패널
     	startBtn.setFont(new Font("맑은 고딕", Font.BOLD, 16));
     	startBtn.setBorderPainted(false);
 
-			this.add(dummyLb);
-    	this.add(textLb);
-    	this.add(startBtn);
+			Pn1.add(dummyLb);
+    	Pn2.add(textLb);
+    	Pn3.add(startBtn);
 
 			mainPn.add(Pn1);
     	mainPn.add(Pn2);
