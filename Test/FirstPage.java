@@ -28,7 +28,7 @@ public class FirstPage extends JPanel { // 1번째 패널
     	Pn3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
 			dummyLb = new JLabel(" ");	// 간격 띄워주는 역할
-    	textLb = new JLabel("레시피 추천 프로그램");
+    	textLb = new JLabel("선택장애 없는 대학생활");
     	startBtn = new JButton("시작");
     	
 			dummyLb.setBorder(new EmptyBorder(95, 0, 0, 0));
